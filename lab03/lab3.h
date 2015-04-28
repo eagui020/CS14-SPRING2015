@@ -19,6 +19,10 @@ using namespace std;
 template <typename T>
 void showTowerStates(int n, stack<T>& A, stack<T>& B, stack<T>& C)
 {
+    //save addresses of originals
+    const static stack<T> *start = &A;
+    const static stack<T> *aux = &B;
+    const static stack<T> *dest = &C;
     if (n <= 0)
     {
         return;
@@ -26,34 +30,101 @@ void showTowerStates(int n, stack<T>& A, stack<T>& B, stack<T>& C)
     else if (n == 1)
     {
         C.push(A.top());
+        cout << "Moved " << A.top() << " from peg A to C" << endl;
         A.pop();
         return;
     }
     else if (n == 2)
     {
         B.push(A.top());
+        cout << "Moved " << A.top() << " from peg A to B" << endl;
         A.pop();
         C.push(A.top());
+        cout << "Moved " << A.top() << " from peg A to C" << endl;
         A.pop();
         C.push(B.top());
+        cout << "Moved " << B.top() << " from peg B to C" << endl;
         B.pop();
         return;
     }
     else if (n == 3) // algorithm for 3 used for n > 3
     {
         C.push(A.top());
+        cout << "Moved " << A.top() << " from peg ";
+        if (&A == start) cout << "A"; //check to original address
+        else if (&A == aux) cout << "B";
+        else if (&A == dest) cout << "C";
+        cout << " to ";
+        if (&C == start) cout << "A";
+        else if (&C == aux) cout << "B";
+        else if (&C == dest) cout << "C";
+        cout << endl;
         A.pop();
         B.push(A.top());
+        cout << "Moved " << A.top() << " from peg ";
+        if (&A == start) cout << "A";
+        else if (&A == aux) cout << "B";
+        else if (&A == dest) cout << "C";
+        cout << " to ";
+        if (&B == start) cout << "A";
+        else if (&B == aux) cout << "B";
+        else if (&B == dest) cout << "C";
+        cout << endl;
         A.pop();
         B.push(C.top());
+        cout << "Moved " << C.top() << " from peg ";
+        if (&C == start) cout << "A";
+        else if (&C == aux) cout << "B";
+        else if (&C == dest) cout << "C";
+        cout << " to ";
+        if (&B == start) cout << "A";
+        else if (&B == aux) cout << "B";
+        else if (&B == dest) cout << "C";
+        cout << endl;
         C.pop();
         C.push(A.top());
+        cout << "Moved " << A.top() << " from peg ";
+        if (&A == start) cout << "A";
+        else if (&A == aux) cout << "B";
+        else if (&A == dest) cout << "C";
+        cout << " to ";
+        if (&C == start) cout << "A";
+        else if (&C == aux) cout << "B";
+        else if (&C == dest) cout << "C";
+        cout << endl;
         A.pop();
         A.push(B.top());
+        cout << "Moved " << B.top() << " from peg ";
+        if (&B == start) cout << "A";
+        else if (&B == aux) cout << "B";
+        else if (&B == dest) cout << "C";
+        cout << " to ";
+        if (&A == start) cout << "A";
+        else if (&A == aux) cout << "B";
+        else if (&A == dest) cout << "C";
+        cout << endl;
         B.pop();
         C.push(B.top());
+        cout << "Moved " << B.top() << " from peg ";
+        if (&B == start) cout << "A";
+        else if (&B == aux) cout << "B";
+        else if (&B == dest) cout << "C";
+        cout << " to ";
+        if (&C == start) cout << "A";
+        else if (&C == aux) cout << "B";
+        else if (&C == dest) cout << "C";
+        cout << endl;
         B.pop();
         C.push(A.top());
+        cout << "Moved " << A.top() << " from peg ";
+        if (&A == start) cout << "A";
+        else if (&A == aux) cout << "B";
+        else if (&A == dest) cout << "C";
+        cout << " to ";
+        if (&C == start) cout << "A";
+        else if (&C == aux) cout << "B";
+        else if (&C == dest) cout << "C";
+        cout << endl;
         A.pop();
         return;
     }
@@ -65,6 +136,15 @@ void showTowerStates(int n, stack<T>& A, stack<T>& B, stack<T>& C)
         //move everything on aux to final destination
         showTowerStates(n - 1, A, C, B);
         C.push(A.top());
+        cout << "Moved " << A.top() << " from peg ";
+        if (&A == start) cout << "A";
+        else if (&A == aux) cout << "B";
+        else if (&A == dest) cout << "C";
+        cout << " to ";
+        if (&C == start) cout << "A";
+        else if (&C == aux) cout << "B";
+        else if (&C == dest) cout << "C";
+        cout << endl;
         A.pop();
         --n;
         showTowerStates(n, B, A, C);

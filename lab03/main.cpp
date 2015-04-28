@@ -72,13 +72,13 @@ int main() {
     stack<int> aux;
     stack<int> dest;
     int i;
-    for (i = 1; i <= 20; ++i) // Change i <= value for different cases
+    for (i = 4; i > 0; --i) // Change i value for different cases
     {
         start.push(i);
     }
     // cout << i << endl;
-    showTowerStates(i-1, start, aux, dest);
-    TowerDisplay(start, aux, dest);
+    showTowerStates(4, start, aux, dest); //change n to i original
+    // TowerDisplay(start, aux, dest); //final outcome
     
     return 0;    
 }

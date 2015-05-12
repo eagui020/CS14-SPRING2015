@@ -2,6 +2,11 @@
 //  Eric Aguirre
 //  861174273
 //  5/12/15
+//  1. Use DFS to search through and see if child is not selected parent is for
+//  both sides
+//  2. Use buffer[0] as bool with 0 and 1 and if returns 1 print the path
+//  3. Traverse then create the sum for the vertical index if not found else 
+//  add to it
 ///
 
 #ifndef LAB5_H
@@ -372,19 +377,19 @@ class BST
                 if (sum == 0)
                 {
                     buffer[0] = 1;
-                    for (int j = i; j > 0; --j)
+                    for (int j = i - 1; j > 0; --j)
                     {
                         cout << buffer[j] << " ";
                     }
                     cout << endl;
                     return;
                 }
-                buffer[0] = 0;
                 return;
             }
             else
             {
                 int currSum = sum - n->value;
+                if(currSum < 0) return;
                 buffer[i] = n->value;
                 ++i;
                 if ( currSum == 0 && n->isLeaf() )

@@ -2,6 +2,11 @@
 //  Eric Aguirre
 //  861174273
 //  5/12/15
+//  1. Use DFS to search through and see if child is not selected parent is for
+//  both sides
+//  2. Use buffer[0] as bool with 0 and 1 and if returns 1 print the path
+//  3. Traverse then create the sum for the vertical index if not found else 
+//  add to it
 ///
 #include "lab5.h"
 #include <map>
@@ -26,7 +31,8 @@ int main() {
     int arr[1000];
     // use printSumPath to print
     test1.printSumPath(test1.root, 80, arr);
-    test1.printSumPath(test1.root, 70, arr);
+    //test case for 0
+    // test1.printSumPath(test1.root, 70, arr);
     
     //Part3
     int hd = 0;

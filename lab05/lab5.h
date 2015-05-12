@@ -1,7 +1,7 @@
 ///
 //  Eric Aguirre
 //  861174273
-//  4/29/15
+//  5/12/15
 ///
 
 #ifndef LAB5_H
@@ -366,24 +366,25 @@ class BST
         {
             // Subtract value from sum when recurring
             // and check to see if the sum is 0 when done
-            static int i = 0;
+            static int i = 1;
             if(n == nil)
             {
                 if (sum == 0)
                 {
-                    cout << "Part 2" << endl;
-                    for (int j = i - 1; j >= 0; --j)
+                    buffer[0] = 1;
+                    for (int j = i; j > 0; --j)
                     {
                         cout << buffer[j] << " ";
                     }
                     cout << endl;
                     return;
                 }
+                buffer[0] = 0;
+                return;
             }
             else
             {
                 int currSum = sum - n->value;
-                if(currSum < 0) return;
                 buffer[i] = n->value;
                 ++i;
                 if ( currSum == 0 && n->isLeaf() )
@@ -394,26 +395,18 @@ class BST
                 if(n->right) findSumPath(n->right, currSum, buffer);
             }
         }
+        void printSumPath(Node* n, int sum, int buffer[])
+        {
+            cout << "Part 2" << endl;
+            findSumPath(n, sum, buffer);
+            if (buffer[0] == 0)
+            {
+                cout << "0" << endl;
+            }
+        }
         
         void vertSum(Node* node, int hd, map<int, int>& m)
         {
-            // // base case
-            // if (node == null) 
-            // {
-            //     cout << "Tree empty." << endl;
-            //     return;
-            // }
-      
-            // // Store the values in map for left subtree
-            // vertSum(node->left, hd - 1, m);
-      
-            // // Save vertical sum for this node
-            // int prevSum;
-            
-            // hM.put(hD, prevSum + root.key());
-      
-            // // Store the values in hM for right subtree
-            // VerticalSumUtil(node->right, hd + 1, m);
             if(node==NULL) return;
         	m[hd]+=node->value;
         	vertSum(node->left, hd-1, m);

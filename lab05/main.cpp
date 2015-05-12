@@ -1,3 +1,8 @@
+///
+//  Eric Aguirre
+//  861174273
+//  5/12/15
+///
 #include "lab5.h"
 #include <map>
 
